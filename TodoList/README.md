@@ -1,0 +1,1 @@
+You can use the `Live Server` extension of VSCode to open `index.html`.
