@@ -7,3 +7,8 @@ These projects may be coded in C, C++, Python, Rust and so on.
 ## How to use
 
 In each directory, there is a README.md file to tell you how to run the program.
+
+## What have I finished?
+- Snake: JavaScript
+- TickTackToe: C++
+- Play Bad Apple in Linux Terminal: C
