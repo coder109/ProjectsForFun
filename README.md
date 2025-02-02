@@ -15,3 +15,5 @@ In each directory, there is a README.md file to tell you how to run the program.
 - ASCII Digital Clock: Java
 - Todo List: Vue.js
 - Caesar Cipher Cracker: Perl
+- FizzBuzz: 8086 Assembly Language(NOT FINISHED YET)
+- RPN Calculator: C++(Will support decimals in the future:) )
