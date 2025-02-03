@@ -1,0 +1,3 @@
+C:/programs/ProjectsForFun/build/CMakeFiles/RPNCalculator.dir
+C:/programs/ProjectsForFun/build/CMakeFiles/ALL_BUILD.dir
+C:/programs/ProjectsForFun/build/CMakeFiles/ZERO_CHECK.dir
