@@ -35,9 +35,13 @@ void Calculator::PrintStack(std::stack<double> running_stack) {
 double Calculator::Calculate(std::string expression) {
     std::stack<double> running_stack;
     bool isNum = false;
+    bool isNeg = false;
     for(size_t i = 0; i < expression.length(); ++i) {
         // Operator
-        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/') {
+        if (expression[i] == '+' ||
+        (expression[i] == '-' && (i == expression.length() - 1 || expression[i + 1] == ' ')) || 
+         expression[i] == '*' || 
+         expression[i] == '/') {
             isNum = false;
             if(running_stack.size() < 2) {
                 throw std::invalid_argument("Invalid expression");
@@ -48,18 +52,36 @@ double Calculator::Calculate(std::string expression) {
             running_stack.pop();
             double result = OperatorCalc(expression[i], num1, num2);
             running_stack.push(result);
+        } else if (expression[i] == '-' && expression[i + 1] != ' ')
+        {
+            isNeg = true;
         } else if (expression[i] == ' ') {
             // Space
             isNum = false;
+        } else if(expression[i] == '.') {
+            throw std::invalid_argument("Invalid expression");
         } else {
-            // Number
+            // Number including decimal, negative
             isNum = true;
             double num = 0;
-            while (i < expression.length() && expression[i] >= '0' && expression[i] <= '9') {
-                num = num * 10 + (expression[i] - '0');
-                i++;
+            int decimalCount = 1;
+            bool isDecimal = false;
+            while (i < expression.length()) {
+                if(expression[i] >= '0' && expression[i] <= '9' && !isDecimal) {
+                    num = num * 10 + (expression[i] - '0');
+                    i++;
+                } else if(expression[i] == '.') {
+                    isDecimal = true;
+                    i++;
+                } else if(expression[i] >= '0' && expression[i] <= '9' && isDecimal) {
+                    num = num + ((expression[i] - '0') / pow(10, decimalCount++));
+                    i++;
+                } else {
+                    break;
+                }
             }
-            running_stack.push(num);
+            running_stack.push((isNeg ? -1. : 1.) * num);
+            isNeg = false;
             i--;
         }
     }
