@@ -38,24 +38,21 @@ class MultiHeadAttention(nn.Module):
         self.weight_K = nn.Linear(d_model, d_k)
         self.weight_V = nn.Linear(d_model, d_v)
         self.weight_O = nn.Linear(d_v * self.num_heads, d_model)
-        self.attention_module = torch.ModuleDict(
-            {
-                f"head_{i}": ScaleDotProductAttention() for i in range(self.num_heads)
-            }
-        )
+        self.attention_module = ScaleDotProductAttention()
 
     def forward(self, query, key, value, mask=None):
+        step_size = query.shape[1] // self.num_heads
         output = torch.cat(
             [
-                self.attention_module[f"head_{i}"](
-                    self.weight_Q(query),
-                    self.weight_K(key),
-                    self.weight_V(value),
+                self.attention_module(
+                    self.weight_Q(query[:, :, :]),
+                    self.weight_K(key[:, :, :]),
+                    self.weight_V(value[:, :, :]), # bs * d_q * d_k
                     mask,
                 )
                 for i in range(self.num_heads)
-            ],
-        ) # bs * d_q * d_model
+            ],1
+        ).view(query.shape[0], query.shape[1], d_v * self.num_heads) # bs * d_q * d_model
         output = self.weight_O(output) # bs * d_q * d_model
         return output
     
@@ -75,11 +72,12 @@ class PositionEncoding(nn.Module):
         super(PositionEncoding, self).__init__()
     
     def forward(self, x):
-        pos = torch.arange(0, x.shape[1], dtype=torch.float).unsqueeze(1)
-        sin_cos_contain = pos / (10000 ** (torch.arange(0, x.shape[-1], 2, dtype=torch.float) / x.shape[-1]))
-        sin_cos_contain[1::2] = torch.sin(sin_cos_contain[1::2])
-        sin_cos_contain[::2] = torch.cos(sin_cos_contain[::2])
-        return x + sin_cos_contain
+        # Input: bs * d_q * d_model
+        # Output: bs * d_q * d_model
+        pos = torch.arange(0, x.shape[1], dtype=torch.float).unsqueeze(0)
+        pos = pos.repeat(x.shape[0], 1)
+        pos = pos.unsqueeze(-1).expand_as(x)
+        return x + pos
     
 class Encoder(nn.Module):
     def __init__(self):
@@ -107,7 +105,7 @@ class Decoder(nn.Module):
         self.layer_norm3 = nn.LayerNorm(d_model)
     
     def forward(self, x, encoder_output, mask=None):
-        mask = torch.triu(torch.ones_like(mask), 1)
+        mask = torch.triu(torch.ones_like(x), 1)
         mask = mask.masked_fill(mask == 1, float('-inf'))
         attention = self.masked_mha(x, encoder_output, encoder_output, mask)
         attention = self.layer_norm1(x + attention)
