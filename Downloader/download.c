@@ -80,7 +80,7 @@ void win_tcp_download(const char *url, const int port, const char *filename) {
         WSAresult = recv(main_socket, recv_buffer, (int)strlen(recv_buffer), 0);
         if (WSAresult > 0) {
             printf("Bytes received: %d\n", WSAresult);
-            write_into_file(recv_buffer, filename);
+            win_write_into_file(recv_buffer, filename);
         }
         else if (WSAresult == 0)
             printf("Connection closed\n");
@@ -93,7 +93,7 @@ void win_tcp_download(const char *url, const int port, const char *filename) {
     WSACleanup();   
 }
 
-BOOL write_into_file(char *buffer, const char *filename) {
+BOOL win_write_into_file(char *buffer, const char *filename) {
     // Initialize the data
     HANDLE file = CreateFile(filename, GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     DWORD bytes_to_write = (DWORD)strlen(buffer);

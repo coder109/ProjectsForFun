@@ -14,9 +14,12 @@
 
 #ifdef _WIN32
 void win_tcp_download(const char* url, const int port, const char* filename);
-BOOL write_into_file(char* buffer, const char* filename);
+void win_http_download(const char* url, const int port, const char* filename);
+BOOL win_write_into_file(char* buffer, const char* filename);
 #elif __linux__
-void linux_download(const char* url, const char* filename);
+void linux_tcp_download(const char* url, const int port, const char* filename);
+void linux_http_download(const char* url, const int port, const char* filename);
+bool linux_write_into_file(char* buffer, const char* filename);
 #endif
 
 #endif
