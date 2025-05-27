@@ -22,6 +22,7 @@ In each directory, there **might** be a README.md file to tell you how to run th
 - FizzBuzz: Prolog, 8086 Assembly Language(NOT FINISHED YET)
 - RPN Calculator: C++
 - Hanoi: Chez Scheme
+- Generator: C
 
 ### GUI/Web/Visual Art
 
