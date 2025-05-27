@@ -1,0 +1,17 @@
+CC=gcc
+CFLAGS=-Wall -Werror
+OBJECTS=download.o main.o
+
+all: download
+
+download: $(OBJECTS)
+	$(CC) $(CFLAGS) -o download $(OBJECTS)
+
+download.o: download.c download.h
+	$(CC) $(CFLAGS) -c download.c
+
+main.o: main.c download.h
+	$(CC) $(CFLAGS) -c main.c
+
+clean:
+	rm -f *.o download

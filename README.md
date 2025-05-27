@@ -13,6 +13,9 @@ In each directory, there **might** be a README.md file to tell you how to run th
 - Snake: JavaScript
 - TickTackToe: C++
 
+### Tools
+- Downloader: C (NOT FINISHED YET)
+
 ### Cipher
 
 - Caesar Cipher Cracker: Perl
