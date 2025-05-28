@@ -9,12 +9,12 @@ A download program that downloads files from an external HTML URL to local files
 Build the code first. On Windows:
 
 ```bash
-gcc .\download.c .\main.c -o downloader -Wall -lws2_32
+gcc .\download.c .\main.c -Wall -o downloader.exe -lwininet
 ```
 
 Then run the program like:
 
 ```Bash
-downloader.exe 255.255.255.255 1 bg.jpg
+downloader.exe https://www.coderlock.site/bg.jpg bg.jpg
 ```
 

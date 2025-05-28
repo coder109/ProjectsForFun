@@ -1,4 +1,14 @@
+# Executables
 *.exe
+
+# Texts
 *.txt
+
+# Pictures
+*.png
+*.jpg
+*.gif
+
+# Building Folders
 .vscode/*
 build/*
