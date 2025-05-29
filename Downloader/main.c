@@ -11,7 +11,11 @@ int main(int argc, char** argv) {
         return 1;
     }
     // Download
+    #ifdef _WIN32
     win_download(argv[1], argv[2]);
+    #elif __linux__
+    linux_download(argv[1], argv[2]);
+    #endif
 
     return 0;
 }

@@ -38,5 +38,19 @@ void win_download(const char* url, const char* filename) {
     InternetCloseHandle(internet);
 }
 #elif __linux__
-void linux_download(const char *url, const char *filename) {}
+void linux_download(const char *url, const char *filename) {
+    // Create Socket
+    int main_socket = socket(AF_INET, SOCK_STREAM, 0);
+    if(main_socket < 0) {
+        perror("Socket Creation Failed");
+        return;
+    }
+
+    // Setup the server address
+    struct sockaddr_in server_address;
+    memset(&server_address, 0, sizeof(server_address));
+    server_address.sin_family = AF_INET;
+    server_address.sin_port = htons(80);
+    server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
+}
 #endif
