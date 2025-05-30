@@ -19,7 +19,7 @@ Byte-pair Encoding: C (NOT FINISHED YET)
 
 ### Tools
 
-- Downloader: C (NOT FINISHED YET)
+- Downloader: C (HTTP All Done, need to implement HTTPs for Linux)
 - Pic2ASCII: Python
 
 ### Cipher
