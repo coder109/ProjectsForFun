@@ -10,7 +10,7 @@ In each directory, there **might** be a README.md file to tell you how to run th
 
 ### AI-related
 
-Byte-pair Encoding: C (NOT FINISHED YET)
+Byte-pair Encoding: C (TODO: Implement Main BPE Logic)
 
 ### Games
 
@@ -28,10 +28,12 @@ Byte-pair Encoding: C (NOT FINISHED YET)
 
 ### Basic Algorithms
 
-- FizzBuzz: Prolog, 8086 Assembly Language(NOT FINISHED YET)
+- FizzBuzz: Prolog
 - RPN Calculator: C++
 - Hanoi: Chez Scheme
 - Generator: C
+- Data Structures: C
+    - Dynamic Table
 
 ### GUI/Web/Visual Art
 

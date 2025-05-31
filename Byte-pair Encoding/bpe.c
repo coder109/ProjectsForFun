@@ -32,7 +32,21 @@ bool bpeOneIter(const char* filename) {
     // Read the file until the end
     int bytes_read = 0;
     while((bytes_read = fread(buffer, 1, READ_BUFFER_SIZE, fp)) > 0) {
-        
+        bpeOneBlock(buffer);
+    }
+
+    return true;
+}
+
+bool bpeOneBlock(const char* block_string) {
+    int window_begin = 0, window_end = window_begin + WINDOW_SIZE;
+    if(window_end > strlen(block_string)) {
+        return false;
+    }
+
+    int max_window_freq = 0;
+    while(true) {
+        // TODO: Implement the logic of BPE
     }
 
     return true;

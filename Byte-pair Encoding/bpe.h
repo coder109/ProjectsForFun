@@ -10,14 +10,25 @@
 #define ITER_TIME 100
 #define PRINT_TABLE_STEP_INTERVAL 5
 #define READ_BUFFER_SIZE 1024
+#define WINDOW_SIZE 2
+#define STACK_SIZE 1024
 
 extern char* vocab_list[MAX_VOCAB_SIZE];
 extern int vocab_size;
+
+typedef struct {
+    char* pattern[WINDOW_SIZE];
+    int freq;
+} window_pattern_freq_elem;
 
 bool bpe(const char* filename);
 
 bool bpeOneIter(const char* filename);
 
+bool bpeOneBlock(const char* block_string);
+
 void printVocabList();
+
+int getMaxFreqInStack();
 
 #endif
