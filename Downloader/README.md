@@ -12,6 +12,12 @@ Build the code first. On Windows:
 gcc .\download.c .\main.c -Wall -o downloader.exe -lwininet
 ```
 
+On Linux:
+
+```bash
+gcc ./download.c ./main.c -Wall -o downloader -lssl -lcrypto
+```
+
 Then run the program like:
 
 ```Bash
