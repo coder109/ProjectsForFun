@@ -1,5 +1,7 @@
 # Executables
 *.exe
+*.out
+*.o
 
 # Texts
 *.txt
