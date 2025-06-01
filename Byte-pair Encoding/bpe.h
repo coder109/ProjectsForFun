@@ -6,6 +6,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "DynamicTable.h"
+
 #define MAX_VOCAB_SIZE 10000
 #define ITER_TIME 100
 #define PRINT_TABLE_STEP_INTERVAL 5
@@ -30,5 +32,7 @@ bool bpeOneBlock(const char* block_string);
 void printVocabList();
 
 int getMaxFreqInStack();
+
+void updateVocabList(char* pattern);
 
 #endif
