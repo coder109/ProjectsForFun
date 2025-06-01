@@ -7,6 +7,9 @@ int main(int argc, char **argv) {
     PushIntoTable(&y, sizeof(int), table);
     PrintDynamicTableAsInt(table);
     PushIntoTable(&z, sizeof(int), table);
+    DeleteElementByIndex(table, 1);
+    DynamicTableElem* elem = GetElementByIndex(table, 0);
+    printf("%d\n", *(int*)elem->data);
     PrintDynamicTableAsInt(table);
     FreeDynamicTable(table);
     return 0;

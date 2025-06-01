@@ -34,6 +34,34 @@ bool MoveElement(DynamicTable* old_table, DynamicTable* new_table) {
     return true;
 }
 
+bool DeleteElementByIndex(DynamicTable* table, int index) {
+    if(table == NULL) {
+        printf("Cannot delete element from Table NULL.\n");
+        return false;
+    }
+    if(index >= table->elem_num || index < 0) {
+        printf("Index out of range.\n");
+        return false;
+    }
+    for(int i = index; i < table->elem_num - 1; i++) {
+        table->table[i] = table->table[i + 1];
+    }
+    table->elem_num -= 1;
+    return true;
+}
+
+DynamicTableElem* GetElementByIndex(DynamicTable* table, int index) {
+    if(table == NULL) {
+        printf("Cannot get element from Table NULL.\n");
+        return NULL;
+    }
+    if(index >= table->elem_num) {
+        printf("Index out of range.\n");
+        return NULL;
+    }
+    return &table->table[index];
+}
+
 bool PushIntoTable(void* data, int data_size, DynamicTable* table) {
     if(table == NULL) {
         printf("Cannot push elements into Table NULL.\n");

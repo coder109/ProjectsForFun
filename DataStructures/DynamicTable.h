@@ -26,6 +26,10 @@ DynamicTable* ExpandDynamicTable(DynamicTable* table);
 
 bool MoveElement(DynamicTable* old_table, DynamicTable* new_table);
 
+bool DeleteElementByIndex(DynamicTable* table, int index);
+
+DynamicTableElem* GetElementByIndex(DynamicTable* table, int index);
+
 bool PushIntoTable(void* data, int data_size, DynamicTable* table);
 
 void FreeDynamicTable(DynamicTable* table);
