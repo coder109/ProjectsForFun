@@ -34,8 +34,12 @@ void PrintDynamicTableAsInt(DynamicTable* table);
 
 bool IsElementInTable(DynamicTable* table, void* data);
 
-bool ModElement(DynamicTable* table, void* data, int data_size);
+bool ModElementByIndex(DynamicTable* table, int index, void* data, int data_size);
 
 int GetElementFirstIndex(DynamicTable* table, void* data);
+
+bool DeleteElementFirstOccur(DynamicTable* table, void* data);
+
+bool DeleteElementAllOccur(DynamicTable* table, void* data);
 
 #endif

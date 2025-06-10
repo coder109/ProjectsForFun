@@ -82,3 +82,33 @@ int GetElementFirstIndex(DynamicTable* table, void* data) {
     }
     return -1;
 }
+
+bool DeleteElementFirstOccur(DynamicTable* table, void* data) {
+    int index = GetElementFirstIndex(table, data);
+    if(index == -1) {
+        return false;
+    }
+    for(int i = index; i < table->elem_num - 1; i++) {
+        table->table[i] = table->table[i + 1];
+    }
+    table->elem_num -= 1;
+    return true;
+}
+
+bool DeleteElementAllOccur(DynamicTable* table, void* data) {
+    int index = GetElementFirstIndex(table, data);
+    while(index != -1) {
+        DeleteElementFirstOccur(table, data);
+        index = GetElementFirstIndex(table, data);
+    }
+    return true;
+}
+
+bool ModElementByIndex(DynamicTable* table, int index, void* data, int data_size) {
+    if(index >= table->elem_num) {
+        return false;
+    }
+    table->table[index].data = data;
+    table->table[index].size = data_size;
+    return true;
+}

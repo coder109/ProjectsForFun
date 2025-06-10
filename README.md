@@ -10,8 +10,6 @@ In each directory, there **might** be a README.md file to tell you how to run th
 
 ### AI-related
 
-- Byte-pair Encoding: C (TODO: Implement Main BPE Logic)
-
 ### Games
 
 - Snake: JavaScript
