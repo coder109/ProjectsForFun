@@ -23,6 +23,7 @@ In each directory, there **might** be a README.md file to tell you how to run th
 ### Cipher
 
 - Caesar Cipher Cracker: Perl
+- Base64 Encode & Decode: C
 
 ### Basic Algorithms
 
