@@ -7,7 +7,7 @@
 
 #define DYNAMICTABLE_DEFAULT_SIZE 2
 
-typedef struct{
+typedef struct {
     void* data;
     int size;
 } DynamicTableElem;
