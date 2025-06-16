@@ -33,6 +33,7 @@ In each directory, there **might** be a README.md file to tell you how to run th
 - Generator: C
 - Data Structures: C
     - Dynamic Table
+    - List(Like `list` in Python)
 
 ### GUI/Web/Visual Art
 
