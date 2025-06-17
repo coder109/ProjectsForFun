@@ -6,7 +6,7 @@
 #include <malloc.h>
 #include <stdbool.h>
 
-#define RELATIVE_UNKNOWN -1
+#define RELATIVE_UNK -1
 #define RELATIVE_LEFT 0
 #define RELATIVE_RIGHT 1
 
@@ -22,7 +22,7 @@ bool InsertIntoTree(int data, BinaryTree* tree);
 
 bool FindInTree(int data, BinaryTree* tree);
 
-bool DeleteFromTree(int data, BinaryTree* tree);
+BinaryTree* DeleteFromTree(int data, BinaryTree* tree);
 
 void PreOrderTraverse(BinaryTree* tree);
 

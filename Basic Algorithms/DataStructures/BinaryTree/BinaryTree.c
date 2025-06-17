@@ -59,58 +59,52 @@ static BinaryTree* FindMaxInTree(BinaryTree* tree) {
     return tree;
 }
 
-static BinaryTree* FindMinInTree(BinaryTree* tree) {
+BinaryTree* DeleteFromTree(int data, BinaryTree* tree) {
     if(tree == NULL) {
+        printf("Delete failed, tree is empty.\n");
         return NULL;
     }
-    while(tree->left != NULL) {
-        tree = tree->left;
-    }
-    return tree;
-}
 
-bool DeleteFromTree(int data, BinaryTree* tree) {
-    if(tree == NULL) {
-        return false;
-    }
-
-    BinaryTree* prev = NULL;
     BinaryTree* curr = tree;
-    int relative_position = RELATIVE_UNKNOWN;
+    BinaryTree* prev = NULL;
+    int relative_position = RELATIVE_UNK;
     while(curr != NULL) {
-        if(curr->data > data) {
-            prev = curr;
-            curr = curr->left;
-            relative_position = RELATIVE_LEFT;
-        } else if(curr->data < data) {
-            prev = curr;
-            curr = curr->right;
-            relative_position = RELATIVE_RIGHT;
-        } else {
-            if(curr->left == NULL && curr->right == NULL) {
-                if(relative_position == RELATIVE_LEFT) {
-                    prev->left = NULL;
-                } else if(relative_position == RELATIVE_RIGHT) {
-                    prev->right = NULL;
-                }
-                free(curr);
-                return true;
-            } else if(curr->left == NULL) {
-                prev->right = curr->right;
-                free(curr);
-                return true;
-            } else if(curr->right == NULL) {
-                prev->left = curr->left;
-                free(curr);
-                return true;
+        if(curr->data == data) {
+            if(curr->left != NULL && curr->right != NULL) {
+                BinaryTree* max_node = FindMaxInTree(curr->left);
+                curr->data = max_node->data;
+                return DeleteFromTree(max_node->data, curr->left);
             } else {
-                BinaryTree* max_in_left = FindMaxInTree(curr->left);
-                curr->data = max_in_left->data;
-                return DeleteFromTree(max_in_left->data, curr->left);
+                BinaryTree* to_be_deleted = curr;
+                BinaryTree* new_root = NULL;
+                if(curr->left != NULL) {
+                    new_root = curr->left;
+                } else if(curr->right != NULL) {
+                    new_root = curr->right;
+                }
+                if(prev == NULL) { // Node to be deleted is the root node
+                    free(to_be_deleted);
+                    return new_root; // Return the new root node
+                } else if(relative_position == RELATIVE_LEFT) {
+                    prev->left = new_root;
+                } else if(relative_position == RELATIVE_RIGHT) {
+                    prev->right = new_root;
+                }
+                free(to_be_deleted);
+                return tree; // Return the updated tree
             }
         }
+        prev = curr;
+        if(curr->data > data) {
+            curr = curr->left;
+            relative_position = RELATIVE_LEFT;
+        } else {
+            curr = curr->right;
+            relative_position = RELATIVE_RIGHT;
+        }
     }
-    return false;
+    printf("Delete failed, data not found.\n");
+    return tree; // Return the original tree if data not found
 }
 
 void PreOrderTraverse(BinaryTree* tree) {
