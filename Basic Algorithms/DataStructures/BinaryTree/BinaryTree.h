@@ -30,4 +30,6 @@ void InOrderTraverse(BinaryTree* tree);
 
 void PostOrderTraverse(BinaryTree* tree);
 
+void FreeTree(BinaryTree* tree);
+
 #endif

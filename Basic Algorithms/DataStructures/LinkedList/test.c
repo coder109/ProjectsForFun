@@ -22,11 +22,11 @@ int main(int argc, char **argv) {
     printf("CountNodeNumber: %d\n", CountNodeNumber(list));
 
     // Test Delete
-    // Delete(&arr[9], list);
-    // Delete(&arr[1], list);
-    // Delete(&arr[0], list);
-    // Delete(&arr[0], list);
-    // PrintAsInt(list);
+    Delete(&arr[9], list);
+    Delete(&arr[1], list);
+    Delete(&arr[0], list);
+    Delete(&arr[0], list);
+    PrintAsInt(list);
 
     // Test DeleteAll
     for(int i = 0; i < 10; i++) {

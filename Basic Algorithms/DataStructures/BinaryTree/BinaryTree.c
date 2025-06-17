@@ -8,31 +8,32 @@ BinaryTree* CreateTree(int data) {
     return tree;
 }
 
-bool InsertIntoTree(int data, BinaryTree* tree) {
-    BinaryTree* neo_node = CreateTree(data);
-
-    // Insert into an empty tree
+static bool InsertNodeIntoTree(BinaryTree* tree, BinaryTree* neo_node) {
     if(tree == NULL) {
         tree = neo_node;
         return true;
     }
-
-    // Insert into a non-empty tree
-    if(data < tree->data) {
+    if(neo_node->data < tree->data) {
         if(tree->left == NULL) {
             tree->left = neo_node;
             return true;
         }
-        return InsertIntoTree(data, tree->left);
-    } else if(data > tree->data) {
+        InsertNodeIntoTree(tree->left, neo_node);
+    } else if(neo_node->data > tree->data) {
         if(tree->right == NULL) {
             tree->right = neo_node;
             return true;
         }
-        return InsertIntoTree(data, tree->right);
-    } else {
-        return false;
+        InsertNodeIntoTree(tree->right, neo_node);
     }
+
+    return false;
+}
+
+bool InsertIntoTree(int data, BinaryTree* tree) {
+    BinaryTree* neo_node = CreateTree(data);
+
+    return InsertNodeIntoTree(tree, neo_node);
 }
 
 bool FindInTree(int data, BinaryTree* tree) {
@@ -137,4 +138,13 @@ void PostOrderTraverse(BinaryTree* tree) {
     PostOrderTraverse(tree->left);
     PostOrderTraverse(tree->right);
     printf("%d ", tree->data);
+}
+
+void FreeTree(BinaryTree* tree) {
+    if(tree == NULL) {
+        return;
+    }
+    FreeTree(tree->left);
+    FreeTree(tree->right);
+    free(tree);
 }
