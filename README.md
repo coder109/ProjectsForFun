@@ -8,8 +8,6 @@ In each directory, there **might** be a README.md file to tell you how to run th
 
 ## What have I finished?
 
-### AI-related
-
 ### Games
 
 - Snake: JavaScript
@@ -35,6 +33,7 @@ In each directory, there **might** be a README.md file to tell you how to run th
     - Dynamic Table
     - List: Similar to `list` in Python
     - Linked List
+    - Binary Search Tree: In `BinaryTree` directory
 
 ### GUI/Web/Visual Art
 
