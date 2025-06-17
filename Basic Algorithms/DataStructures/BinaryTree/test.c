@@ -58,5 +58,13 @@ int main() {
     }
 
     FreeTree(tree);
+
+    tree = CreateTree(1);
+    for(int i = 2; i < 11; i++) {
+        InsertIntoTree(i, tree);
+    }
+    Rotate(tree);
+    printf("Rotate:\n");
+    InOrderTraverse(tree);
     return 0;
 }

@@ -107,6 +107,17 @@ BinaryTree* DeleteFromTree(int data, BinaryTree* tree) {
     return tree; // Return the original tree if data not found
 }
 
+void Rotate(BinaryTree* tree) {
+    if(tree == NULL) {
+        return;
+    }
+    Rotate(tree->left);
+    Rotate(tree->right);
+    BinaryTree* temp = tree->left;
+    tree->left = tree->right;
+    tree->right = temp;
+}
+
 void PreOrderTraverse(BinaryTree* tree) {
     if(tree == NULL) {
         return;

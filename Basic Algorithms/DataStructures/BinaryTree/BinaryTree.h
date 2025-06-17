@@ -24,6 +24,8 @@ bool FindInTree(int data, BinaryTree* tree);
 
 BinaryTree* DeleteFromTree(int data, BinaryTree* tree);
 
+void Rotate(BinaryTree* tree);
+
 void PreOrderTraverse(BinaryTree* tree);
 
 void InOrderTraverse(BinaryTree* tree);
